@@ -1,0 +1,19 @@
+.task {
+  position: relative;
+  padding-left: 15px;
+}
+
+.task h1 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
