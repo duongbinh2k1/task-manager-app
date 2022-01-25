@@ -29,3 +29,16 @@ export const deleteTask = async (req, res) => {
     res.status(401).json(err);
   }
 };
+
+export const updateTask = async (req, res) => {
+  try {
+    const updateTask = req.body;
+    const task = await taskModel.updateOne(
+      { _id: updateTask.id },
+      { $set: updateTask },
+      { upsert: true }
+    );
+  } catch (err) {
+    res.status(401).json(err);
+  }
+};

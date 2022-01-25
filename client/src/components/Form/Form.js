@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TaskApi from "../../apis/taskApi";
 import "./Form.css";
 
-const Form = ({ state, setState }) => {
+const Form = ({ state, setState, update, task }) => {
   const [value, setValue] = useState({
     title: "",
     content: "",
@@ -10,15 +10,34 @@ const Form = ({ state, setState }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      let params = { ...value };
-      const response = await TaskApi.postTask(params);
-      if (response.title !== null) {
-        setState(!state);
-        // console.log(state);
+    if (update !== true) {
+      try {
+        let params = { ...value };
+        const response = await TaskApi.postTask(params);
+        if (response.title !== null) {
+          setState(!state);
+          // console.log(state);
+        }
+      } catch (error) {
+        throw error;
       }
-    } catch (error) {
-      throw error;
+    } else {
+      const updateTask = {
+        id: task._id,
+        title: value.title ? value.title : task.title,
+        content: value.content ? value.content : task.content,
+      };
+      console.log(updateTask);
+      try {
+        let params = { ...updateTask };
+        const response = await TaskApi.updateTask(params);
+        if (response.title !== null) {
+          setState(!state);
+          // console.log(state);
+        }
+      } catch (error) {
+        throw error;
+      }
     }
   };
 
@@ -31,8 +50,6 @@ const Form = ({ state, setState }) => {
   return (
     <>
       <div className="form">
-        <h1>Task Manager</h1>
-        <p>ReactJs + Nodejs + Mogodb</p>
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
             type="text"

@@ -15,6 +15,11 @@ const TaskApi = {
     const url = `/delete/${params.id}`;
     return axiosClient.get(url);
   },
+
+  updateTask: (params) => {
+    const url = "/update";
+    return axiosClient.put(url, params);
+  },
 };
 
 export default TaskApi;

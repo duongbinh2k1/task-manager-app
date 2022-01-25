@@ -1,17 +1,9 @@
 .form {
-  margin: 100px auto;
+  margin: 50px auto;
   margin-bottom: 50px;
   max-width: 500px;
   background-color: #fff;
   text-align: center;
-}
-
-.form h1 {
-  margin-bottom: 8px;
-}
-
-.form p {
-  margin-bottom: 20px;
 }
 
 .form form {
